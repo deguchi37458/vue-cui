@@ -1,5 +1,5 @@
 <template>
-    <p>home $</p>
+    <p>hirokideguchi $</p>
 </template>
 
 <style scoped>
