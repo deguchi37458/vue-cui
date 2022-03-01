@@ -1,21 +1,21 @@
 <template>
-    <input type="text" style="ime-mode:disabled;">
+    <div>
+        <pwd></pwd><input type="text" style="ime-mode:disabled;">
+    </div>
 </template>
 
 <script>
+import pwd from './pwd'
 
 export default {
-    data () {
-        return {
-            msg: 'Hello World!'
-        }
-    },
+    components: {
+        pwd
+    }
 }
 </script>
 
 <style scoped>
     input {
-        display: inline-block;
         color: #fff;
     }
 </style>

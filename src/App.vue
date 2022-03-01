@@ -1,21 +1,19 @@
 <template>
   <div class="back">
     <intro></intro>
-    <pwd /><cmd />
+    <cmd /> 
   </div>
 </template>
 
 <script>
 import intro from './components/intro'
 import cmd from './components/cmd'
-import pwd from './components/pwd'
 
 export default {
   components: {
     intro,
-    cmd,
-    pwd
-  },
+    cmd
+  }
 }
 </script>
 
