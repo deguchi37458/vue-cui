@@ -40,7 +40,6 @@ export default {
   methods: {
     onEnter: function(){
       if(this.cmd == 'clear'){
-        alert("clear");
         this.items = [];
       }else{
         this.judge = this.cmd;
