@@ -6,7 +6,7 @@
         <li v-for="item in items" v-bind:key="item.id">
           <div><p class="pass-pwd">{{item.pass_pwd}}</p><p class="pass-cmd">{{item.pass_cmd}}</p></div>
           <help v-if="item.pass_cmd == 'help'"></help>
-          
+          <about v-if="item.pass_cmd == 'cat about.txt'"></about>
         </li>
       </ul>
     </div>
@@ -18,11 +18,14 @@
 <script>
 import intro from './components/intro'
 import help from './components/help'
+import about from './components/about'
+
 
 export default {
   components: {
     intro,
-    help
+    help,
+    about
   },
   data: function(){
     return {
