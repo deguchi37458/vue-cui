@@ -8,6 +8,7 @@
           <help v-if="item.pass_cmd == 'help'"></help>
           <about v-if="item.pass_cmd == 'cat about.txt'"></about>
           <date v-if="item.pass_cmd == 'date'"></date>
+          <ls v-if="item.pass_cmd == 'ls'"></ls>
         </li>
       </ul>
     </div>
@@ -21,13 +22,15 @@ import intro from './components/intro'
 import help from './components/help'
 import about from './components/about'
 import date from './components/date'
+import ls from './components/list-watch'
 
 export default {
   components: {
     intro,
     help,
     about,
-    date
+    date,
+    ls
   },
   data: function(){
     return {
