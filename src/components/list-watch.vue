@@ -10,7 +10,7 @@
 export default {
     data: function(){
         return {
-            lists:['about.txt']
+            lists:['about.txt', 'skill.txt']
         }
     }
 }

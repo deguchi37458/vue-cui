@@ -7,6 +7,7 @@
           <div><p class="pass-pwd">{{item.pass_pwd}}</p><p class="pass-cmd">{{item.pass_cmd}}</p></div>
           <help v-if="item.pass_cmd == 'help'"></help>
           <about v-if="item.pass_cmd == 'cat about.txt'"></about>
+          <skill v-if="item.pass_cmd == 'cat skill.txt'"></skill>
           <date v-if="item.pass_cmd == 'date'"></date>
           <ls v-if="item.pass_cmd == 'ls'"></ls>
         </li>
@@ -21,6 +22,7 @@
 import intro from './components/intro'
 import help from './components/help'
 import about from './components/about'
+import skill from './components/skill'
 import date from './components/date'
 import ls from './components/list-watch'
 
@@ -29,6 +31,7 @@ export default {
     intro,
     help,
     about,
+    skill,
     date,
     ls
   },
