@@ -1,31 +1,47 @@
 <template>
   <div class="back">
     <intro></intro>
-    <pwd></pwd><input type="text" v-model="cmd" v-on:keydown.enter="onEnter" style="ime-mode:disabled;" >
-    <help v-if="judge == 'help'"></help>
+    <div id="wrapper">
+      <ul>
+        <li v-for="item in items" v-bind:key="item.id">
+          <div><p class="pass-pwd">{{item.pass_pwd}}</p><p class="pass-cmd">{{item.pass_cmd}}</p></div>
+          <help v-if="judge == 'help'"></help>
+        </li>
+      </ul>
+    </div>
+    <p class="pwd" v-text="pwd"></p>
+    <input type="text" v-model="cmd" v-on:keydown.enter="onEnter" style="ime-mode:disabled;" >
   </div>
 </template>
 
 <script>
 import intro from './components/intro'
-import pwd from './components/pwd'
 import help from './components/help'
 
 export default {
   components: {
     intro,
-    pwd,
     help
   },
   data: function(){
     return {
       judge:'',
-      cmd: ''
+      pwd:'hirokideguchi $',
+      cmd:'',
+      items:[]
     }
   },
   methods: {
     onEnter: function(){
+      if(this.cmd == 'clear'){
+        alert("clear")
+      }
       this.judge = this.cmd;
+      this.items.push({
+        pass_pwd: this.pwd,
+        pass_cmd: this.cmd 
+      })
+      this.cmd = '';
     }
   }
 }
@@ -37,10 +53,19 @@ export default {
   background-color: #000;
   min-height: 100vh;
 }
-form{
+.pwd,
+.pass-pwd {
   display: inline-block;
+  color: yellow;
+  margin-right: 10px;
+}
+.cmd,
+.pass-cmd {
+  display: inline-block;
+  color: #fff;
 }
 input {
   color: #fff;
+  font-family: 'ＭＳ ゴシック',sans-serif;
 }
 </style>

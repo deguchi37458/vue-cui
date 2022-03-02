@@ -1,6 +1,7 @@
 <template>
     <div>
-        <p>VUE CUI</p>
+        <p>Resume CUI Mode</p>
+        <p>copy right @ hiroki deguchi</p>
     </div>
 </template>
 
