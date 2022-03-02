@@ -7,6 +7,7 @@
           <div><p class="pass-pwd">{{item.pass_pwd}}</p><p class="pass-cmd">{{item.pass_cmd}}</p></div>
           <help v-if="item.pass_cmd == 'help'"></help>
           <about v-if="item.pass_cmd == 'cat about.txt'"></about>
+          <date v-if="item.pass_cmd == 'date'"></date>
         </li>
       </ul>
     </div>
@@ -19,13 +20,14 @@
 import intro from './components/intro'
 import help from './components/help'
 import about from './components/about'
-
+import date from './components/date'
 
 export default {
   components: {
     intro,
     help,
-    about
+    about,
+    date
   },
   data: function(){
     return {
