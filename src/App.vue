@@ -5,7 +5,8 @@
       <ul>
         <li v-for="item in items" v-bind:key="item.id">
           <div><p class="pass-pwd">{{item.pass_pwd}}</p><p class="pass-cmd">{{item.pass_cmd}}</p></div>
-          <help v-if="judge == 'help'"></help>
+          <help v-if="item.pass_cmd == 'help'"></help>
+          
         </li>
       </ul>
     </div>

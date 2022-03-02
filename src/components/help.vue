@@ -4,8 +4,7 @@
         <p>Basic Command</p>
         <ul>
           <li><dl><dt>cat [file]</dt><dd>:open txt or md files.</dd></dl></li>
-          <li><dl><dt>cat [file]</dt><dd>:open txt or md files.</dd></dl></li>
-          <li><dl><dt>cat [file]</dt><dd>:open txt or md files.</dd></dl></li>
+          <li><dl><dt>date      </dt><dd>:show date.</dd></dl></li>
         </ul>
     </div>
 </template>
@@ -15,12 +14,11 @@
 </script>
 
 <style scoped>
-  .help {
-    color: #fff;
-  }
- dt, dd {
-   display: inline-block;
-   width: 200px;
- }
-
+.help {
+  color: #fff;
+}
+dt, dd {
+  display: inline-block;
+  width: 200px;
+}
 </style>
