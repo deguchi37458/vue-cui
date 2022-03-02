@@ -10,7 +10,7 @@
       </ul>
     </div>
     <p class="pwd" v-text="pwd"></p>
-    <input type="text" v-model="cmd" v-on:keydown.enter="onEnter" style="ime-mode:disabled;" >
+    <input class="cmd" type="text" v-model="cmd" v-on:keydown.enter="onEnter" style="ime-mode:disabled;" >
   </div>
 </template>
 
@@ -28,19 +28,21 @@ export default {
       judge:'',
       pwd:'hirokideguchi $',
       cmd:'',
-      items:[]
+      items:[],
     }
   },
   methods: {
     onEnter: function(){
       if(this.cmd == 'clear'){
-        alert("clear")
+        alert("clear");
+        this.items = [];
+      }else{
+        this.judge = this.cmd;
+        this.items.push({
+          pass_pwd: this.pwd,
+          pass_cmd: this.cmd 
+        })
       }
-      this.judge = this.cmd;
-      this.items.push({
-        pass_pwd: this.pwd,
-        pass_cmd: this.cmd 
-      })
       this.cmd = '';
     }
   }
@@ -59,12 +61,11 @@ export default {
   color: yellow;
   margin-right: 10px;
 }
-.cmd,
 .pass-cmd {
   display: inline-block;
   color: #fff;
 }
-input {
+input.cmd {
   color: #fff;
   font-family: 'ＭＳ ゴシック',sans-serif;
 }
