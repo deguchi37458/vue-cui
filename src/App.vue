@@ -6,10 +6,11 @@
         <li v-for="item in items" v-bind:key="item.id">
           <div><p class="pass-pwd">{{item.pass_pwd}}</p><p class="pass-cmd">{{item.pass_cmd}}</p></div>
           <help v-if="item.pass_cmd == 'help'"></help>
-          <about v-if="item.pass_cmd == 'cat about.txt'"></about>
-          <skill v-if="item.pass_cmd == 'cat skill.txt'"></skill>
-          <date v-if="item.pass_cmd == 'date'"></date>
-          <ls v-if="item.pass_cmd == 'ls'"></ls>
+          <about v-else-if="item.pass_cmd == 'cat about.txt'"></about>
+          <skill v-else-if="item.pass_cmd == 'cat skill.txt'"></skill>
+          <date v-else-if="item.pass_cmd == 'date'"></date>
+          <ls v-else-if="item.pass_cmd == 'ls'"></ls>
+          <p class="error" v-else>Command not found.  Use 'help' to see the command list.</p>
         </li>
       </ul>
     </div>
@@ -40,7 +41,7 @@ export default {
       judge:'',
       pwd:'hirokideguchi $',
       cmd:'',
-      items:[],
+      items:[]
     }
   },
   methods: {
@@ -79,5 +80,8 @@ export default {
 input.cmd {
   color: #fff;
   font-family: 'ＭＳ ゴシック',sans-serif;
+}
+.error {
+  color: #fff;
 }
 </style>
