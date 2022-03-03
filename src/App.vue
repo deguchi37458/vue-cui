@@ -8,7 +8,7 @@
           <help v-if="item.pass_cmd == 'help'"></help>
           <about v-else-if="item.pass_cmd == 'cat about.txt'"></about>
           <skill v-else-if="item.pass_cmd == 'cat skill.txt'"></skill>
-          <date v-else-if="item.pass_cmd == 'date'"></date>
+          <date ref="date" v-else-if="item.pass_cmd == 'date'"></date>
           <span v-else-if="item.pass_cmd == 'ls'" v-for=" ls in lss" v-bind:key="ls.id">{{ls}}</span>
           <p v-else-if="item.pass_cmd == 'history'" v-for="history in histories" v-bind:key="history.id">{{history.history_cmd}}</p>
           <p class="error" v-else>{{item.pass_cmd}}：Command not found.  Use 'help' to see the command list.</p>
@@ -53,13 +53,15 @@ export default {
         this.judge = this.cmd;
         this.items.push({
           pass_pwd: this.pwd,
-          pass_cmd: this.cmd 
+          pass_cmd: this.cmd,
+          pass_date: this.date
         })
         this.histories.push({
           history_cmd: this.cmd 
         })
       }
       this.cmd = '';
+      this.$refs.date[0].date_gen()
     },
     // onUp: function(){
     //   console.log(this.items[0].pass_cmd);
