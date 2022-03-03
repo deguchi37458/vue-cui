@@ -90,7 +90,7 @@ export default {
 }
 input.cmd {
   color: #fff;
-  font-family: 'ＭＳ ゴシック',sans-serif;
+  font-family: 'Space Mono','monospace','Noto Sans JP',sans-serif;
 }
 span {
   display: inline-block;

@@ -1,12 +1,12 @@
 <template>
     <div class="skill">
         <ul>
-            <li><dl><dt>OS</dt><dd>：Windows, Linux</dd></dl></li>
-            <li><dl><dt>使用言語</dt><dd>：HTML/CSS, JavaScript, PHP</dd></dl></li>
+            <li><dl><dt>OS</dt><dd>&nbsp;：Windows, Linux</dd></dl></li>
+            <li><dl><dt>使用言語</dt><dd>&nbsp;：HTML/CSS, JavaScript, PHP</dd></dl></li>
             <li><dl><dt>フレームワーク</dt><dd>：Vue.js</dd></dl></li>
-            <li><dl><dt>CMS</dt><dd>：WordPress</dd></dl></li>
-            <li><dl><dt>ツール</dt><dd>：npm</dd></dl></li>
-            <li><dl><dt>開発環境</dt><dd>：Docker, XAMPP(MAMP)</dd></dl></li>
+            <li><dl><dt>CMS</dt><dd>&nbsp;：WordPress</dd></dl></li>
+            <li><dl><dt>ツール</dt><dd>&nbsp;：npm</dd></dl></li>
+            <li><dl><dt>開発環境</dt><dd>&nbsp;：Docker, XAMPP(MAMP)</dd></dl></li>
         </ul>
     </div>
 </template>
@@ -17,13 +17,10 @@
 
 <style scoped>
 .skill {
-    color: #fff;
+    color: #00b6ee;
 }
-dt {
+dt,dd{
     display: inline-block;
-    width: 160px;
-}
-dd {
-    display: inline-block;
+    width: 200px;
 }
 </style>

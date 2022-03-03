@@ -1,7 +1,7 @@
 <template>
     <div>
-        <p>Resume CUI Mode</p>
-        <p>copyright @ hirokideguchi</p>
+        <p>CUI Mode</p>
+        <p>Copyright @ hirokideguchi</p>
     </div>
 </template>
 
