@@ -8,8 +8,8 @@
           <help v-if="item.pass_cmd == 'help'"></help>
           <about v-else-if="item.pass_cmd == 'cat about.txt'"></about>
           <skill v-else-if="item.pass_cmd == 'cat skill.txt'"></skill>
-          <date ref="date" v-else-if="item.pass_cmd == 'date'"></date>
           <span v-else-if="item.pass_cmd == 'ls'" v-for=" ls in lss" v-bind:key="ls.id">{{ls}}</span>
+          <p v-else-if="item.pass_cmd == 'date'">{{item.pass_date}}</p>
           <p v-else-if="item.pass_cmd == 'history'" v-for="history in histories" v-bind:key="history.id">{{history.history_cmd}}</p>
           <p class="error" v-else>{{item.pass_cmd}}：Command not found.  Use 'help' to see the command list.</p>
         </li>
@@ -25,15 +25,13 @@ import intro from './components/intro'
 import help from './components/help'
 import about from './components/about'
 import skill from './components/skill'
-import date from './components/date'
 
 export default {
   components: {
     intro,
     help,
     about,
-    skill,
-    date,
+    skill
   },
   data: function(){
     return {
@@ -54,18 +52,20 @@ export default {
         this.items.push({
           pass_pwd: this.pwd,
           pass_cmd: this.cmd,
-          pass_date: this.date
+          pass_date: this.date_gen()
         })
         this.histories.push({
           history_cmd: this.cmd 
         })
       }
       this.cmd = '';
-      this.$refs.date[0].date_gen()
     },
-    // onUp: function(){
-    //   console.log(this.items[0].pass_cmd);
-    // }
+    date_gen: function(){
+      let date = new Date;
+      let aryWeek = ['日', '月', '火', '水', '木', '金', '土'];
+      this.date = date.getFullYear() + '年　' +(date.getMonth() + 1) + '月　' + date.getDate() + '日　' + aryWeek[date.getDay()] + '曜日　' + date.getHours() + '時' + date.getMinutes() + '分' + date.getSeconds() + '秒　JST';
+      return this.date
+    },
   }
 }
 </script>
