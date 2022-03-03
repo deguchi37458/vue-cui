@@ -17,6 +17,6 @@
 }
 dt, dd {
     display: inline-block;
-    width: 200px;
+    width: 300px;
 }
 </style>
