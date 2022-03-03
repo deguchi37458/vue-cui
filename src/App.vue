@@ -10,12 +10,13 @@
           <skill v-else-if="item.pass_cmd == 'cat skill.txt'"></skill>
           <date v-else-if="item.pass_cmd == 'date'"></date>
           <span v-else-if="item.pass_cmd == 'ls'" v-for=" ls in lss" v-bind:key="ls.id">{{ls}}</span>
+          <p v-else-if="item.pass_cmd == 'history'" v-for="history in histories" v-bind:key="history.id">{{history.history_cmd}}</p>
           <p class="error" v-else>{{item.pass_cmd}}：Command not found.  Use 'help' to see the command list.</p>
         </li>
       </ul>
     </div>
     <p class="pwd" v-text="pwd"></p>
-    <input class="cmd" type="text" v-model="cmd" v-on:keydown.enter="onEnter" style="ime-mode:disabled;" >
+    <input class="cmd" type="text" v-model="cmd" v-on:keydown.enter="onEnter" v-on:keydown.up="onUp" style="ime-mode:disabled;" >
   </div>
 </template>
 
@@ -40,6 +41,7 @@ export default {
       pwd:'hirokideguchi $',
       cmd:'',
       items:[],
+      histories:[],
       lss:['about.txt', 'skill.txt']
     }
   },
@@ -53,9 +55,15 @@ export default {
           pass_pwd: this.pwd,
           pass_cmd: this.cmd 
         })
+        this.histories.push({
+          history_cmd: this.cmd 
+        })
       }
       this.cmd = '';
-    }
+    },
+    // onUp: function(){
+    //   console.log(this.items[0].pass_cmd);
+    // }
   }
 }
 </script>
