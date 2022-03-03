@@ -10,7 +10,7 @@
           <skill v-else-if="item.pass_cmd == 'cat skill.txt'"></skill>
           <date v-else-if="item.pass_cmd == 'date'"></date>
           <ls v-else-if="item.pass_cmd == 'ls'"></ls>
-          <p class="error" v-else>Command not found.  Use 'help' to see the command list.</p>
+          <p class="error" v-else>{{item.pass_cmd}}：Command not found.  Use 'help' to see the command list.</p>
         </li>
       </ul>
     </div>
