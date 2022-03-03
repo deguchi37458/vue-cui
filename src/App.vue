@@ -9,7 +9,7 @@
           <about v-else-if="item.pass_cmd == 'cat about.txt'"></about>
           <skill v-else-if="item.pass_cmd == 'cat skill.txt'"></skill>
           <date v-else-if="item.pass_cmd == 'date'"></date>
-          <ls v-else-if="item.pass_cmd == 'ls'"></ls>
+          <span v-else-if="item.pass_cmd == 'ls'" v-for=" ls in lss" v-bind:key="ls.id">{{ls}}</span>
           <p class="error" v-else>{{item.pass_cmd}}：Command not found.  Use 'help' to see the command list.</p>
         </li>
       </ul>
@@ -25,7 +25,6 @@ import help from './components/help'
 import about from './components/about'
 import skill from './components/skill'
 import date from './components/date'
-import ls from './components/list-watch'
 
 export default {
   components: {
@@ -34,14 +33,14 @@ export default {
     about,
     skill,
     date,
-    ls
   },
   data: function(){
     return {
       judge:'',
       pwd:'hirokideguchi $',
       cmd:'',
-      items:[]
+      items:[],
+      lss:['about.txt', 'skill.txt']
     }
   },
   methods: {
@@ -62,6 +61,9 @@ export default {
 </script>
 
 <style scoped>
+#wrapper {
+  color: #fff;
+}
 .back {
   padding: 10px; 
   background-color: #000;
@@ -75,13 +77,13 @@ export default {
 }
 .pass-cmd {
   display: inline-block;
-  color: #fff;
 }
 input.cmd {
   color: #fff;
   font-family: 'ＭＳ ゴシック',sans-serif;
 }
-.error {
-  color: #fff;
+span {
+  display: inline-block;
+  width: 200px;
 }
 </style>
