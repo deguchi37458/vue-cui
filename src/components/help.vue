@@ -21,6 +21,6 @@
 }
 dt, dd {
   display: inline-block;
-  width: 200px;
+  width: 160px;
 }
 </style>

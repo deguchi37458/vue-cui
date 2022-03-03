@@ -21,7 +21,7 @@
 }
 dt {
     display: inline-block;
-    width: 200px;
+    width: 160px;
 }
 dd {
     display: inline-block;
