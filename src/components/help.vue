@@ -2,8 +2,10 @@
     <div class="help">
         <p>Resume CUI Mode</p>
         <p>Basic Command</p>
+        <p><br></p>
         <ul>
-          <li><dl><dt>cat [file]</dt><dd>:open txt or md files.</dd></dl></li>
+          <li><dl><dt>cat [file]</dt><dd>:open txt files.</dd></dl></li>
+          <li><dl><dt>ls        </dt><dd>:list segments.</dd></dl></li>
           <li><dl><dt>date      </dt><dd>:show date.</dd></dl></li>
         </ul>
     </div>
