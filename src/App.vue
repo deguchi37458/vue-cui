@@ -10,7 +10,7 @@
           <skill v-else-if="item.pass_cmd == 'cat skill.txt'"></skill>
           <span v-else-if="item.pass_cmd == 'ls'" v-for=" ls in lss" v-bind:key="ls.id">{{ls}}</span>
           <p v-else-if="item.pass_cmd == 'date'">{{item.pass_date}}</p>
-          <p v-else-if="item.pass_cmd == 'history'" v-for="history in histories" v-bind:key="history.id">{{history.history_cmd}}</p>
+          <p v-else-if="item.pass_cmd == 'history'" v-for="history in item.pass_history" v-bind:key="history.id">{{history}}</p>
           <p class="error" v-else>{{item.pass_cmd}}：Command not found.  Use 'help' to see the command list.</p>
         </li>
       </ul>
@@ -48,15 +48,12 @@ export default {
       if(this.cmd == 'clear'){
         this.items = [];
       }else{
-        this.judge = this.cmd;
         this.items.push({
           pass_pwd: this.pwd,
           pass_cmd: this.cmd,
+          pass_history: this.histories.push(this.cmd),
           pass_date: this.date_gen()
-        })
-        this.histories.push({
-          history_cmd: this.cmd 
-        })
+        });
       }
       this.cmd = '';
     },
