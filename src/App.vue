@@ -4,18 +4,19 @@
     <div id="wrapper">
       <ul>
         <li v-for="item in items" v-bind:key="item.id">
-          <div><p class="pass-pwd">{{item.pass_pwd}}</p><p class="pass-cmd">{{item.pass_cmd}}</p></div>
+          <div><p class="pass-pwd">{{item.pass_pwd}} $</p><p class="pass-cmd">{{item.pass_cmd}}</p></div>
           <help v-if="item.pass_cmd == 'help'"></help>
           <about v-else-if="item.pass_cmd == 'cat about.txt'"></about>
           <skill v-else-if="item.pass_cmd == 'cat skill.txt'"></skill>
           <span v-else-if="item.pass_cmd == 'ls'" v-for=" ls in lss" v-bind:key="ls.id">{{ls}}</span>
           <p v-else-if="item.pass_cmd == 'date'">{{item.pass_date}}</p>
+          <p v-else-if="item.pass_cmd == 'pwd'">{{pwd}}</p>
           <p v-else-if="item.pass_cmd == 'history'" v-for="(history, index) in item.pass_histories" v-bind:key="history.id"> {{index}} {{history}}</p>
           <p class="error" v-else>{{item.pass_cmd}}：Command not found.  Use 'help' to see the command list.</p>
         </li>
       </ul>
     </div>
-    <p class="pwd" v-text="pwd"></p>
+    <p class="pwd">{{pwd}} $</p>
     <input class="cmd" type="text" v-model="cmd" v-on:keydown.enter="onEnter" v-on:keydown.up="onUp" style="ime-mode:disabled;" >
   </div>
 </template>
@@ -36,7 +37,7 @@ export default {
   data: function(){
     return {
       judge:'',
-      pwd:'hirokideguchi $',
+      pwd:'hirokideguchi',
       cmd:'',
       items:[],
       histories:[],
