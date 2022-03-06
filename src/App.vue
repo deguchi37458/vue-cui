@@ -10,7 +10,7 @@
           <skill v-else-if="item.pass_cmd == 'cat skill.txt'"></skill>
           <span v-else-if="item.pass_cmd == 'ls'" v-for=" ls in lss" v-bind:key="ls.id">{{ls}}</span>
           <p v-else-if="item.pass_cmd == 'date'">{{item.pass_date}}</p>
-          <p v-else-if="item.pass_cmd == 'history'" v-for="history in item.pass_histories" v-bind:key="history.id">{{history}}</p>
+          <p v-else-if="item.pass_cmd == 'history'" v-for="(history, index) in item.pass_histories" v-bind:key="history.id"> {{index}} {{history}}</p>
           <p class="error" v-else>{{item.pass_cmd}}：Command not found.  Use 'help' to see the command list.</p>
         </li>
       </ul>
