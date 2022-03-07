@@ -60,6 +60,10 @@ export default {
       }
       this.cmd = '';
     },
+    onUp: function(){
+      let i = this.items.length;
+      this.cmd = this.items[i-1].pass_cmd;
+    },
     date_gen: function(){
       let date = new Date;
       let aryWeek = ['日', '月', '火', '水', '木', '金', '土'];
