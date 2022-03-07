@@ -41,7 +41,8 @@ export default {
       cmd:'',
       items:[],
       histories:[],
-      lss:['about.txt', 'skill.txt']
+      lss:['about.txt', 'skill.txt'],
+      i:''
     }
   },
   methods: {
@@ -59,10 +60,11 @@ export default {
         })
       }
       this.cmd = '';
+      this.i = this.items.length;
     },
     onUp: function(){
-      let i = this.items.length;
-      this.cmd = this.items[i-1].pass_cmd;
+      this.cmd = this.items[this.i-1].pass_cmd;
+      this.i--;
     },
     date_gen: function(){
       let date = new Date;
