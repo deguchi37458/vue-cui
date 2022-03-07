@@ -17,7 +17,7 @@
             <span v-else-if="item.pass_pwd == 'hirokideguchi/work'" v-for="work in lss.work" v-bind:key="work.id">{{work}}</span>
           </span>
           <p v-else-if="item.pass_cmd == 'cd'"></p>
-          <p class="error" v-else>{{item.pass_cmd}}：Command not found.  Use 'help' to see the command list.</p>
+          <p class="error" v-else>{{item.pass_cmd}}：{{error}}</p>
         </li>
       </ul>
     </div>
@@ -49,23 +49,17 @@ export default {
         about: ['about.txt', 'skill.txt'],
         work: ['work1.txt', 'work2.txt']
       },
-      i:''
+      i:'',
+      error:''
     }
   },
   methods: {
     onEnter: function(){
       this.cmd = this.cmd.trim();
       let cmd_sp = this.cmd.split(' ');
+      this.histories.push(this.cmd);
       if(this.cmd == 'clear'){
         this.items = [];
-      }else{
-        this.histories.push(this.cmd);
-        this.items.push({
-          pass_pwd: this.pwd,
-          pass_cmd: this.cmd,
-          pass_histories: this.histories.concat(),
-          pass_date: this.date_gen()
-        })
       }
       // ディレクトリ移動
       if(cmd_sp[0] == 'cd'){
@@ -73,8 +67,17 @@ export default {
           this.pwd = 'hirokideguchi'
         }else{
           this.pwd = this.pwd + '/' +cmd_sp[1];
+          this.error = 'No such file or directory';
         }
       }
+      this.items.push({
+        pass_pwd: this.pwd,
+        pass_cmd: this.cmd,
+        pass_histories: this.histories.concat(),
+        pass_date: this.date_gen(),
+        pass_error: 'Command not found.  Use `help` to see the command list.'
+      })
+      console.log("OK");
       this.cmd = '';
       this.i = this.items.length;
     },
