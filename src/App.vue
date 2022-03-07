@@ -8,10 +8,15 @@
           <help v-if="item.pass_cmd == 'help'"></help>
           <about v-else-if="item.pass_cmd == 'cat about.txt'"></about>
           <skill v-else-if="item.pass_cmd == 'cat skill.txt'"></skill>
-          <span v-else-if="item.pass_cmd == 'ls'" v-for=" ls in lss" v-bind:key="ls.id">{{ls}}</span>
           <p v-else-if="item.pass_cmd == 'date'">{{item.pass_date}}</p>
           <p v-else-if="item.pass_cmd == 'pwd'">{{pwd}}</p>
           <p v-else-if="item.pass_cmd == 'history'" v-for="(history, index) in item.pass_histories" v-bind:key="history.id"> {{index}} {{history}}</p>
+          <span v-else-if="item.pass_cmd == 'ls'">
+            <span v-if="item.pass_pwd == 'hirokideguchi'">{{lss}}</span>
+            <span v-else-if="item.pass_pwd == 'hirokideguchi/about'" v-for="about in lss.about" v-bind:key="about.id">{{about}}</span>
+            <span v-else-if="item.pass_pwd == 'hirokideguchi/work'" v-for="work in lss.work" v-bind:key="work.id">{{work}}</span>
+          </span>
+          <p v-else-if="item.pass_cmd == 'cd'"></p>
           <p class="error" v-else>{{item.pass_cmd}}：Command not found.  Use 'help' to see the command list.</p>
         </li>
       </ul>
@@ -40,13 +45,17 @@ export default {
       cmd:'',
       items:[],
       histories:[],
-      lss:['about.txt', 'skill.txt'],
+      lss:{
+        about: ['about.txt', 'skill.txt'],
+        work: ['work1.txt', 'work2.txt']
+      },
       i:''
     }
   },
   methods: {
     onEnter: function(){
       this.cmd = this.cmd.trim();
+      let cmd_sp = this.cmd.split(' ');
       if(this.cmd == 'clear'){
         this.items = [];
       }else{
@@ -57,6 +66,14 @@ export default {
           pass_histories: this.histories.concat(),
           pass_date: this.date_gen()
         })
+      }
+      // ディレクトリ移動
+      if(cmd_sp[0] == 'cd'){
+        if(cmd_sp[1] == '../'){
+          this.pwd = 'hirokideguchi'
+        }else{
+          this.pwd = this.pwd + '/' +cmd_sp[1];
+        }
       }
       this.cmd = '';
       this.i = this.items.length;
