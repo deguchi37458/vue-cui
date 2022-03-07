@@ -17,7 +17,7 @@
       </ul>
     </div>
     <p class="pwd">{{pwd}} $</p>
-    <input class="cmd" type="text" v-model="cmd" v-on:keydown.enter="onEnter" v-on:keydown.up="onUp" v-on:keydown.down="onDn" style="ime-mode:disabled;" >
+    <input id="cmd" class="cmd" type="text" v-model="cmd" v-on:keydown.enter="onEnter" v-on:keydown.up="onUp" v-on:keydown.down="onDn" style="ime-mode:disabled;" >
   </div>
 </template>
 
@@ -36,7 +36,6 @@ export default {
   },
   data: function(){
     return {
-      judge:'',
       pwd:'hirokideguchi',
       cmd:'',
       items:[],
@@ -47,10 +46,10 @@ export default {
   },
   methods: {
     onEnter: function(){
+      this.cmd = this.cmd.trim();
       if(this.cmd == 'clear'){
         this.items = [];
       }else{
-        this.judge = this.cmd;
         this.histories.push(this.cmd);
         this.items.push({
           pass_pwd: this.pwd,
