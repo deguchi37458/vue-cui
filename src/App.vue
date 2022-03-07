@@ -17,7 +17,7 @@
       </ul>
     </div>
     <p class="pwd">{{pwd}} $</p>
-    <input class="cmd" type="text" v-model="cmd" v-on:keydown.enter="onEnter" v-on:keydown.up="onUp" style="ime-mode:disabled;" >
+    <input class="cmd" type="text" v-model="cmd" v-on:keydown.enter="onEnter" v-on:keydown.up="onUp" v-on:keydown.down="onDn" style="ime-mode:disabled;" >
   </div>
 </template>
 
@@ -65,6 +65,10 @@ export default {
     onUp: function(){
       this.cmd = this.items[this.i-1].pass_cmd;
       this.i--;
+    },
+    onDn: function(){
+      this.i++;
+      this.cmd = this.items[this.i-1].pass_cmd;
     },
     date_gen: function(){
       let date = new Date;
