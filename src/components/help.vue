@@ -6,6 +6,7 @@
         <ul>
           <li><dl><dt>cat [file]</dt><dd>&nbsp;:open txt files.</dd></dl></li>
           <li><dl><dt>ls        </dt><dd>&nbsp;:list segments.</dd></dl></li>
+          <li><dl><dt>history   </dt><dd>&nbsp;:command history.</dd></dl></li>
           <li><dl><dt>date      </dt><dd>&nbsp;:show date.</dd></dl></li>
         </ul>
     </div>
