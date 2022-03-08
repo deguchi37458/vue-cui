@@ -66,28 +66,29 @@ export default {
       this.histories.push(this.cmd.join(' '));
       if(this.cmd == 'clear'){
         this.items = [];
-      }
-      // ディレクトリ移動
-      if(this.cmd[0] == 'cd'){
-        if(this.cmd[1] == '../' || this.cmd[1] == null){
-          this.pwd = 'hirokideguchi'
-        }else if(Object.keys(this.lss).includes(this.cmd[1]) && this.pwd == 'hirokideguchi'){
-          this.pwd = this.pwd + '/' +this.cmd[1];
-        }else{
-          this.error = 'No such file or directory';
+      }else{
+        // 使用可能なコマンドか
+        if(!this.availables.includes(this.cmd[0])){
+          this.error = 'Command not found.  Use `help` to see the command list.'
         }
+        // ディレクトリ移動
+        if(this.cmd[0] == 'cd'){
+          if(this.cmd[1] == '../' || this.cmd[1] == null){
+            this.pwd = 'hirokideguchi'
+          }else if(Object.keys(this.lss).includes(this.cmd[1]) && this.pwd == 'hirokideguchi'){
+            this.pwd = this.pwd + '/' +this.cmd[1];
+          }else{
+            this.error = 'No such file or directory';
+          }
+        }
+        this.items.push({
+          pass_pwd: this.pwd,
+          pass_cmd: this.cmd,
+          pass_histories: this.histories.concat(),
+          pass_date: this.date_gen(),
+          pass_error: this.error
+        })
       }
-      // 使用可能なコマンドか
-      if(!this.availables.includes(this.cmd[0])){
-        this.error = 'Command not found.  Use `help` to see the command list.'
-      }
-      this.items.push({
-        pass_pwd: this.pwd,
-        pass_cmd: this.cmd,
-        pass_histories: this.histories.concat(),
-        pass_date: this.date_gen(),
-        pass_error: this.error
-      })
       // 初期化
       this.cmd = '';
       this.error = '';
