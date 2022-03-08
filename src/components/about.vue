@@ -15,8 +15,18 @@
 .about {
     color: deepskyblue;
 }
-dt, dd {
+dt {
+    display: inline-block;
+    width: 160px;
+}
+dd {
     display: inline-block;
     width: 300px;
+}
+@media screen and (max-width:480px){
+    dt, dd {
+        display: block;
+        width: 100%;
+    }
 }
 </style>
