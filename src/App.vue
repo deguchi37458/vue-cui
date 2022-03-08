@@ -71,7 +71,7 @@ export default {
       if(this.cmd[0] == 'cd'){
         if(this.cmd[1] == '../' || this.cmd[1] == null){
           this.pwd = 'hirokideguchi'
-        }else if(Object.keys(this.lss).includes(this.cmd[1])){
+        }else if(Object.keys(this.lss).includes(this.cmd[1]) && this.pwd == 'hirokideguchi'){
           this.pwd = this.pwd + '/' +this.cmd[1];
         }else{
           this.error = 'No such file or directory';
