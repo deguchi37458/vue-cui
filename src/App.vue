@@ -55,7 +55,7 @@ export default {
       },
       i:'',
       error:'',
-      availables: ['cd', 'ls', 'date', 'help', 'history', 'clear']
+      availables: ['cd', 'cat', 'ls', 'date', 'help', 'history', 'clear']
     }
   },
   methods: {
@@ -89,7 +89,7 @@ export default {
       })
       // 初期化
       this.cmd = '';
-      this.error = ''
+      this.error = '';
       this.i = this.items.length;
     },
     onUp: function(){
