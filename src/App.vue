@@ -7,6 +7,7 @@
           <div><p class="pass-pwd">{{item.pass_pwd}} $</p><p class="pass-cmd">{{item.pass_cmd.join(' ')}}</p></div>
           <div v-if="item.pass_error == ''" >
             <help v-if="item.pass_cmd == 'help'"></help>
+            <greeting v-else-if="item.pass_cmd.join(' ') == 'cat greeting.txt' && item.pass_pwd == 'hirokideguchi/about'"></greeting>
             <about v-else-if="item.pass_cmd.join(' ') == 'cat about.txt' && item.pass_pwd == 'hirokideguchi/about'"></about>
             <skill v-else-if="item.pass_cmd.join(' ') == 'cat skill.txt' && item.pass_pwd == 'hirokideguchi/about'"></skill>
             <p v-else-if="item.pass_cmd == 'date'">{{item.pass_date}}</p>
@@ -34,6 +35,7 @@
 <script>
 import intro from './components/intro'
 import help from './components/help'
+import greeting from './components/greeting'
 import about from './components/about'
 import skill from './components/skill'
 
@@ -41,6 +43,7 @@ export default {
   components: {
     intro,
     help,
+    greeting,
     about,
     skill
   },
@@ -51,7 +54,7 @@ export default {
       items:[],
       histories:[],
       lss:{
-        about: ['about.txt', 'skill.txt'],
+        about: ['greeting.txt', 'about.txt', 'skill.txt'],
         work: ['work1.txt', 'work2.txt']
       },
       i:'',
