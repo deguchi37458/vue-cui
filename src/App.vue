@@ -7,19 +7,20 @@
           <div><p class="pass-pwd">{{item.pass_pwd}} $</p><p class="pass-cmd">{{item.pass_cmd.join(' ')}}</p></div>
           <div v-if="item.pass_error == ''" >
             <help v-if="item.pass_cmd == 'help'"></help>
-            <about v-else-if="item.pass_cmd == 'cat about.txt'"></about>
-            <skill v-else-if="item.pass_cmd == 'cat skill.txt'"></skill>
+            <about v-else-if="item.pass_cmd.join(' ') == 'cat about.txt' && item.pass_pwd == 'hirokideguchi/about'"></about>
+            <skill v-else-if="item.pass_cmd.join(' ') == 'cat skill.txt' && item.pass_pwd == 'hirokideguchi/about'"></skill>
             <p v-else-if="item.pass_cmd == 'date'">{{item.pass_date}}</p>
             <p v-else-if="item.pass_cmd == 'pwd'">{{pwd}}</p>
             <p v-else-if="item.pass_cmd == 'history'" v-for="(history, index) in item.pass_histories" v-bind:key="history.id"> {{index}} {{history}}</p>
             <div v-else-if="item.pass_cmd == 'ls'">
               <p v-if="item.pass_pwd == 'hirokideguchi'" >
-                <span v-for="key in Object.keys(lss)" v-bind:key="key.id">{{key}}</span>
+                <span class="dir" v-for="key in Object.keys(lss)" v-bind:key="key.id">{{key}}</span>
               </p>
               <span v-else-if="item.pass_pwd == 'hirokideguchi/about'" v-for="about in lss.about" v-bind:key="about.id">{{about}}</span>
               <span v-else-if="item.pass_pwd == 'hirokideguchi/work'" v-for="work in lss.work" v-bind:key="work.id">{{work}}</span>
             </div>
             <p v-else-if="item.pass_cmd[0] == 'cd'"></p>
+            <p class="error" v-else>{{item.pass_cmd.join(' ')}}：No such file or directory</p> 
           </div>
           <p class="error" v-else>{{item.pass_cmd.join(' ')}}：{{item.pass_error}}</p>
         </li>
@@ -93,12 +94,12 @@ export default {
       this.i = this.items.length;
     },
     onUp: function(){
-      this.cmd = this.items[this.i-1].pass_cmd;
+      this.cmd = this.items[this.i-1].pass_cmd.join(' ');
       this.i--;
     },
     onDn: function(){
       this.i++;
-      this.cmd = this.items[this.i-1].pass_cmd;
+      this.cmd = this.items[this.i-1].pass_cmd.join(' ');
     },
     date_gen: function(){
       let date = new Date;
@@ -135,5 +136,8 @@ input.cmd {
 span {
   display: inline-block;
   width: 160px;
+}
+.dir {
+  color: lightgreen;
 }
 </style>
