@@ -10,7 +10,7 @@
             <about v-else-if="item.pass_cmd.join(' ') == 'cat about.txt' && item.pass_pwd == 'hirokideguchi/about'"></about>
             <skill v-else-if="item.pass_cmd.join(' ') == 'cat skill.txt' && item.pass_pwd == 'hirokideguchi/about'"></skill>
             <p v-else-if="item.pass_cmd == 'date'">{{item.pass_date}}</p>
-            <p v-else-if="item.pass_cmd == 'pwd'">{{pwd}}</p>
+            <p v-else-if="item.pass_cmd == 'pwd'">{{item.pass_pwd}}</p>
             <p v-else-if="item.pass_cmd == 'history'" v-for="(history, index) in item.pass_histories" v-bind:key="history.id"> {{index}} {{history}}</p>
             <div v-else-if="item.pass_cmd == 'ls'">
               <p v-if="item.pass_pwd == 'hirokideguchi'" >
@@ -56,7 +56,7 @@ export default {
       },
       i:'',
       error:'',
-      availables: ['cd', 'cat', 'ls', 'date', 'help', 'history', 'clear']
+      availables: ['cd', 'cat', 'ls', 'pwd', 'date', 'help', 'history', 'clear']
     }
   },
   methods: {
@@ -74,9 +74,9 @@ export default {
         // ディレクトリ移動
         if(this.cmd[0] == 'cd'){
           if(this.cmd[1] == '../' || this.cmd[1] == null){
-            this.pwd = 'hirokideguchi'
+            this.next_pwd = 'hirokideguchi'
           }else if(Object.keys(this.lss).includes(this.cmd[1]) && this.pwd == 'hirokideguchi'){
-            this.pwd = this.pwd + '/' +this.cmd[1];
+            this.next_pwd = this.pwd + '/' +this.cmd[1];
           }else{
             this.error = 'No such file or directory';
           }
@@ -88,6 +88,9 @@ export default {
           pass_date: this.date_gen(),
           pass_error: this.error
         })
+      }
+      if (this.next_pwd){
+        this.pwd = this.next_pwd
       }
       // 初期化
       this.cmd = '';
