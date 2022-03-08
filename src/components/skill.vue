@@ -17,7 +17,7 @@
 
 <style scoped>
 .skill {
-    color: #00b6ee;
+    color: deepskyblue;
 }
 dt,dd{
     display: inline-block;
