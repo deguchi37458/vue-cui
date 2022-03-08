@@ -4,25 +4,29 @@
     <div id="wrapper">
       <ul>
         <li v-for="item in items" v-bind:key="item.id">
-          <div><p class="pass-pwd">{{item.pass_pwd}} $</p><p class="pass-cmd">{{item.pass_cmd}}</p></div>
-          <help v-if="item.pass_cmd == 'help'"></help>
-          <about v-else-if="item.pass_cmd == 'cat about.txt'"></about>
-          <skill v-else-if="item.pass_cmd == 'cat skill.txt'"></skill>
-          <p v-else-if="item.pass_cmd == 'date'">{{item.pass_date}}</p>
-          <p v-else-if="item.pass_cmd == 'pwd'">{{pwd}}</p>
-          <p v-else-if="item.pass_cmd == 'history'" v-for="(history, index) in item.pass_histories" v-bind:key="history.id"> {{index}} {{history}}</p>
-          <span v-else-if="item.pass_cmd == 'ls'">
-            <span v-if="item.pass_pwd == 'hirokideguchi'">{{lss}}</span>
-            <span v-else-if="item.pass_pwd == 'hirokideguchi/about'" v-for="about in lss.about" v-bind:key="about.id">{{about}}</span>
-            <span v-else-if="item.pass_pwd == 'hirokideguchi/work'" v-for="work in lss.work" v-bind:key="work.id">{{work}}</span>
-          </span>
-          <p v-else-if="item.pass_cmd == 'cd'"></p>
-          <p class="error" v-else>{{item.pass_cmd}}：{{error}}</p>
+          <div><p class="pass-pwd">{{item.pass_pwd}} $</p><p class="pass-cmd">{{item.pass_cmd.join(' ')}}</p></div>
+          <div v-if="item.pass_error == ''" >
+            <help v-if="item.pass_cmd == 'help'"></help>
+            <about v-else-if="item.pass_cmd == 'cat about.txt'"></about>
+            <skill v-else-if="item.pass_cmd == 'cat skill.txt'"></skill>
+            <p v-else-if="item.pass_cmd == 'date'">{{item.pass_date}}</p>
+            <p v-else-if="item.pass_cmd == 'pwd'">{{pwd}}</p>
+            <p v-else-if="item.pass_cmd == 'history'" v-for="(history, index) in item.pass_histories" v-bind:key="history.id"> {{index}} {{history}}</p>
+            <div v-else-if="item.pass_cmd == 'ls'">
+              <p v-if="item.pass_pwd == 'hirokideguchi'" >
+                <span v-for="key in Object.keys(lss)" v-bind:key="key.id">{{key}}</span>
+              </p>
+              <span v-else-if="item.pass_pwd == 'hirokideguchi/about'" v-for="about in lss.about" v-bind:key="about.id">{{about}}</span>
+              <span v-else-if="item.pass_pwd == 'hirokideguchi/work'" v-for="work in lss.work" v-bind:key="work.id">{{work}}</span>
+            </div>
+            <p v-else-if="item.pass_cmd[0] == 'cd'"></p>
+          </div>
+          <p class="error" v-else>{{item.pass_cmd.join(' ')}}：{{item.pass_error}}</p>
         </li>
       </ul>
     </div>
     <p class="pwd">{{pwd}} $</p>
-    <input id="cmd" class="cmd" type="text" v-model="cmd" v-on:keydown.enter="onEnter" v-on:keydown.up="onUp" v-on:keydown.down="onDn" style="ime-mode:disabled;" >
+    <input id="cmd" class="cmd" type="text" v-model="cmd" v-on:keydown.enter="onEnter" v-on:keydown.up="onUp" v-on:keydown.down="onDn" autocomplete="off">
   </div>
 </template>
 
@@ -50,35 +54,42 @@ export default {
         work: ['work1.txt', 'work2.txt']
       },
       i:'',
-      error:''
+      error:'',
+      availables: ['cd', 'ls', 'date', 'help', 'history', 'clear']
     }
   },
   methods: {
     onEnter: function(){
       this.cmd = this.cmd.trim();
-      let cmd_sp = this.cmd.split(' ');
-      this.histories.push(this.cmd);
+      this.cmd = this.cmd.split(' ');
+      this.histories.push(this.cmd.join(' '));
       if(this.cmd == 'clear'){
         this.items = [];
       }
       // ディレクトリ移動
-      if(cmd_sp[0] == 'cd'){
-        if(cmd_sp[1] == '../'){
+      if(this.cmd[0] == 'cd'){
+        if(this.cmd[1] == '../' || this.cmd[1] == null){
           this.pwd = 'hirokideguchi'
+        }else if(Object.keys(this.lss).includes(this.cmd[1])){
+          this.pwd = this.pwd + '/' +this.cmd[1];
         }else{
-          this.pwd = this.pwd + '/' +cmd_sp[1];
           this.error = 'No such file or directory';
         }
+      }
+      // 使用可能なコマンドか
+      if(!this.availables.includes(this.cmd[0])){
+        this.error = 'Command not found.  Use `help` to see the command list.'
       }
       this.items.push({
         pass_pwd: this.pwd,
         pass_cmd: this.cmd,
         pass_histories: this.histories.concat(),
         pass_date: this.date_gen(),
-        pass_error: 'Command not found.  Use `help` to see the command list.'
+        pass_error: this.error
       })
-      console.log("OK");
+      // 初期化
       this.cmd = '';
+      this.error = ''
       this.i = this.items.length;
     },
     onUp: function(){
