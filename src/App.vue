@@ -62,7 +62,7 @@ export default {
       },
       i:'',
       error:'',
-      availables: ['cd', 'cat', 'ls', 'pwd', 'date', 'help', 'history', 'clear']
+      availables: ['cat', 'cd', 'open', 'ls', 'pwd', 'date', 'help', 'history', 'clear']
     }
   },
   methods: {
