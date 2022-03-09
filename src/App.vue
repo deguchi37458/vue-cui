@@ -87,6 +87,9 @@ export default {
             this.error = 'No such file or directory';
           }
         }
+        if(this.cmd[0] == 'open'){
+          this.open_link();
+        }
         this.items.push({
           pass_pwd: this.pwd,
           pass_cmd: this.cmd,
@@ -110,6 +113,13 @@ export default {
     onDn: function(){
       this.i++;
       this.cmd = this.items[this.i-1].pass_cmd.join(' ');
+    },
+    open_link: function(){
+      if(this.cmd[1] == 'work1.link' && this.pwd == 'hirokideguchi/work'){
+        window.open('https://deguchihi.net');
+      }else{
+        this.error = 'Use `open` command to open link.'
+      }
     },
     date_gen: function(){
       let date = new Date;
