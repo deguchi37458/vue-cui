@@ -10,6 +10,7 @@
             <greeting v-else-if="item.pass_cmd.join(' ') == 'cat greeting.txt' && item.pass_pwd == 'hirokideguchi/about'"></greeting>
             <about v-else-if="item.pass_cmd.join(' ') == 'cat about.txt' && item.pass_pwd == 'hirokideguchi/about'"></about>
             <skill v-else-if="item.pass_cmd.join(' ') == 'cat skill.txt' && item.pass_pwd == 'hirokideguchi/about'"></skill>
+            <work1 v-else-if="item.pass_cmd.join(' ') == 'cat work1.txt' && item.pass_pwd == 'hirokideguchi/work'"></work1>
             <p v-else-if="item.pass_cmd == 'date'">{{item.pass_date}}</p>
             <p v-else-if="item.pass_cmd == 'pwd'">{{item.pass_pwd}}</p>
             <p v-else-if="item.pass_cmd == 'history'" v-for="(history, index) in item.pass_histories" v-bind:key="history.id"> {{index}} {{history}}</p>
@@ -38,6 +39,7 @@ import help from './components/help'
 import greeting from './components/greeting'
 import about from './components/about'
 import skill from './components/skill'
+import work1 from './components/work1'
 
 export default {
   components: {
@@ -45,7 +47,8 @@ export default {
     help,
     greeting,
     about,
-    skill
+    skill,
+    work1
   },
   data: function(){
     return {
@@ -55,7 +58,7 @@ export default {
       histories:[],
       lss:{
         about: ['greeting.txt', 'about.txt', 'skill.txt'],
-        work: ['work1.txt', 'work2.txt']
+        work: ['work1.txt', 'work1.link']
       },
       i:'',
       error:'',
