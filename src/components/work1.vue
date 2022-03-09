@@ -6,7 +6,7 @@
         <ul>
             <li><dl><dt>使用言語</dt><dd>&nbsp;：HTML/CSS, JavaScript, PHP</dd></dl></li>
             <li><dl><dt>CMS</dt><dd>&nbsp;：WordPress</dd></dl></li>
-            <li><dl><dt>ツール</dt><dd>&nbsp;：</dd></dl></li>
+            <li><dl><dt>ツール</dt><dd>&nbsp;：gsap</dd></dl></li>
         </ul>
     </div>
 </template>
