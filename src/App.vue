@@ -22,6 +22,7 @@
               <span v-else-if="item.pass_pwd == 'hirokideguchi/work'" v-for="work in lss.work" v-bind:key="work.id">{{work}}</span>
             </div>
             <p v-else-if="item.pass_cmd[0] == 'cd'"></p>
+            <p v-else-if="item.pass_cmd[0] == 'open'"></p>
             <p class="error" v-else>{{item.pass_cmd.join(' ')}}：No such file or directory</p> 
           </div>
           <p class="error" v-else>{{item.pass_cmd.join(' ')}}：{{item.pass_error}}</p>
