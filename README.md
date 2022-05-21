@@ -1,24 +1,8 @@
-# vue-project
+# vue-cui
 
-## Project setup
-```
-npm install
-```
+![vue-cui](https://user-images.githubusercontent.com/74271220/169655060-d95cc849-9099-4b6f-a047-dfebcd32d144.png)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## 概要
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+シェルを模したCUI画面をVue.jsを使用して実装。
+使用できるコマンドは、
