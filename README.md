@@ -5,4 +5,6 @@
 ## 概要
 
 シェルを模したCUI画面をVue.jsを使用して実装。
-使用できるコマンドは、
+"help"より、使用できるコマンドが確認できます。
+
+- URL : [cui.deguchihi.net](cui.deguchihi.net)
