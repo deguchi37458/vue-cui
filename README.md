@@ -8,3 +8,8 @@
 "help"より、使用できるコマンドが確認できます。
 
 - URL : [cui.deguchihi.net](https://cui.deguchihi.net)
+
+## 技術
+
+- Vue2
+- firebase(deploy)
