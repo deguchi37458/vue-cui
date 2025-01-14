@@ -7,7 +7,7 @@
 シェルを模したCUI画面をVue.jsを使用して実装。
 "help"より、使用できるコマンドが確認できます。
 
-- URL : [cui.deguchihi.net](https://cui.deguchihi.net)
+- URL : https://deguchi37458.github.io/vue-cui/
 
 ## 技術
 
